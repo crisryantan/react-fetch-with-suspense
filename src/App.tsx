@@ -15,9 +15,9 @@ const App: FC = () => {
       <p>
         List of dad jokes curated by {"https://icanhazdadjoke.com"}
       </p>
-
+      <Suspense>
         <Jokes search={search} />
-
+      </Suspense>
     </main>
   );
 };

@@ -1,13 +1,13 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import axios from "axios";
 
-const createResource = () => {
+const createResource = (search: string = '') => {
   let result: any;
   let status = 'initial';
 
    const request = {
     method: 'GET',
-    url: `https://icanhazdadjoke.com/search?term=${''}&limit=10`,
+    url: `https://icanhazdadjoke.com/search?term=${search}&limit=10`,
     headers: {
       Accept: 'application/json',
     }
@@ -39,9 +39,15 @@ const createResource = () => {
 const initialResource = createResource();
 
 const Jokes: FC<{ search: string }> = ({ search }) => {
+  const [r, setR] = useState(initialResource);
+
+  useEffect(() => {
+    setR(createResource(search));
+  }, [search]);
+
   return (
     <div className="jokes-container">
-      {initialResource.read().map((j: any) => (
+      {r.read().map((j: any) => (
         <div className="joke" key={j.id}>
           {j.joke}
         </div>
