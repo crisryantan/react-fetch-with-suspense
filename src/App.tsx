@@ -7,15 +7,16 @@ const App: FC = () => {
   return (
     <main>
       <h1>Dad Jokes</h1>
-      <input
-        onChange={(e) => setSearch(e.target.value)}
-        type="text"
-        placeholder="Search..."
-      />
-      <p>
-        List of dad jokes curated by {"https://icanhazdadjoke.com"}
-      </p>
       <Suspense>
+        <input
+          onChange={(e) => setSearch(e.target.value)}
+          type="text"
+          placeholder="Search..."
+        />
+        <p>
+          List of dad jokes curated by {"https://icanhazdadjoke.com"}
+        </p>
+
         <Jokes search={search} />
       </Suspense>
     </main>

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useTransition } from "react";
 import axios from "axios";
 
 const createResource = (search: string = '') => {
@@ -40,9 +40,10 @@ const initialResource = createResource();
 
 const Jokes: FC<{ search: string }> = ({ search }) => {
   const [r, setR] = useState(initialResource);
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
-    setR(createResource(search));
+    startTransition(() => setR(createResource(search)));
   }, [search]);
 
   return (
