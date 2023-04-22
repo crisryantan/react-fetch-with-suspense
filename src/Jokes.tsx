@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import axios from "axios";
+import {throttle} from "./throttle";
 
 const createResource = (search: string = '') => {
   let result: any;
@@ -13,7 +14,7 @@ const createResource = (search: string = '') => {
     }
   };
 
- const promise = axios(request).then((response) => {
+ const promise = throttle(axios(request),3000).then((response) => {
   result = response.data.results;
   status = 'done'
  }).catch(error => {

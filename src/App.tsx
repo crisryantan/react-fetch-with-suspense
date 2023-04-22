@@ -7,6 +7,7 @@ const App: FC = () => {
   return (
     <main>
       <h1>Dad Jokes</h1>
+            <Suspense>
       <input
         onChange={(e) => setSearch(e.target.value)}
         type="text"
@@ -15,7 +16,7 @@ const App: FC = () => {
       <p>
         List of dad jokes curated by {"https://icanhazdadjoke.com"}
       </p>
-      <Suspense>
+
         <Jokes search={search} />
       </Suspense>
     </main>
